@@ -4,7 +4,7 @@ import { ApiBadRequestResponse, ApiBasicAuth, ApiBody, ApiCreatedResponse, ApiIn
 import { NotificationDto,RawNotificationDto } from './dto/notificationDto.dto';
 import { TopicNotification } from './dto/topicnotification .dto';
 import { Response } from 'express';
-import { AllExceptionsFilter } from 'src/common/filters/exception.filter';
+// import { AllExceptionsFilter } from 'src/common/filters/exception.filter';
 import { APIID } from 'src/common/utils/api-id.config';
 import { GetUserId } from 'src/common/decorator/userId.decorator';
 
@@ -14,7 +14,7 @@ import { GetUserId } from 'src/common/decorator/userId.decorator';
 export class NotificationController {
   constructor(private notificationService: NotificationService) {}
 
-  @UseFilters(new AllExceptionsFilter(APIID.SEND_NOTIFICATION))
+  // @UseFilters(new AllExceptionsFilter(APIID.SEND_NOTIFICATION))
   @Post("send")
   @ApiOkResponse({ description: "send notification successfully" })
   @ApiInternalServerErrorResponse({ description: "internal server error" })

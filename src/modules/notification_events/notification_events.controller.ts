@@ -6,7 +6,7 @@ import { SearchFilterDto } from './dto/searchTemplateType.dto';
 import { Response } from 'express';
 import { CreateEventDto } from './dto/createTemplate.dto';
 import { UpdateEventDto } from './dto/updateEventTemplate.dto';
-import { AllExceptionsFilter } from 'src/common/filters/exception.filter';
+// import { AllExceptionsFilter } from 'src/common/filters/exception.filter';
 import { APIID } from 'src/common/utils/api-id.config';
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from 'src/common/utils/constant.util';
 import { GetUserId } from 'src/common/decorator/userId.decorator';
@@ -17,7 +17,7 @@ import { GetUserId } from 'src/common/decorator/userId.decorator';
 export class NotificationEventsController {
   constructor(private notificationeventsService: NotificationEventsService) {}
 
-  @UseFilters(new AllExceptionsFilter(APIID.TEMPLATE_CREATE))
+  // @UseFilters(new AllExceptionsFilter(APIID.TEMPLATE_CREATE))
   @Post()
   @ApiCreatedResponse({ description: SUCCESS_MESSAGES.TEMPLATE_CREATE })
   @ApiInternalServerErrorResponse({
@@ -34,7 +34,7 @@ export class NotificationEventsController {
     return this.notificationeventsService.createTemplate(userId, createEventDto, response);
   }
 
-  @UseFilters(new AllExceptionsFilter(APIID.TEMPLATE_LIST))
+  // @UseFilters(new AllExceptionsFilter(APIID.TEMPLATE_LIST))
   @Post("/list")
   @ApiBody({ type: SearchFilterDto })
   @ApiInternalServerErrorResponse({
@@ -51,7 +51,7 @@ export class NotificationEventsController {
     return this.notificationeventsService.getTemplates(searchFilterDto, userId, response)
   }
 
-  @UseFilters(new AllExceptionsFilter(APIID.TEMPLATE_GET))
+  // @UseFilters(new AllExceptionsFilter(APIID.TEMPLATE_GET))
   @Patch("/:id")
   @ApiBody({ type: UpdateEventDto })
   @ApiResponse({
@@ -75,7 +75,7 @@ export class NotificationEventsController {
     );
   }
 
-  @UseFilters(new AllExceptionsFilter(APIID.TEMPLATE_DELETE))
+  // @UseFilters(new AllExceptionsFilter(APIID.TEMPLATE_DELETE))
   @Delete("/:id")
   @UsePipes(new ValidationPipe({ transform: true }))
   @ApiResponse({ status: 200, description: SUCCESS_MESSAGES.TEMPLATE_DELETE })

@@ -5,7 +5,7 @@ import { InAppService } from './inApp.service';
 import { CreateInAppNotificationDto, ListInAppNotificationsQueryDto, MarkInAppReadDto } from './dto/inapp.dto';
 import APIResponse from 'src/common/utils/response';
 import { APIID } from 'src/common/utils/api-id.config';
-import { AllExceptionsFilter } from 'src/common/filters/exception.filter';
+// import { AllExceptionsFilter } from 'src/common/filters/exception.filter';
 
 @Controller('notification/inApp')
 @ApiTags('Notification-inApp')
@@ -13,7 +13,7 @@ import { AllExceptionsFilter } from 'src/common/filters/exception.filter';
 export class InAppController {
   constructor(private readonly inAppService: InAppService) {}
 
-  @UseFilters(new AllExceptionsFilter(APIID.SEND_NOTIFICATION))
+  // @UseFilters(new AllExceptionsFilter(APIID.SEND_NOTIFICATION))
   @Get()
   @ApiOkResponse({ description: 'List notifications or return unread count when limit=0' })
   @ApiBadRequestResponse({ description: 'Invalid Request' })
@@ -23,7 +23,7 @@ export class InAppController {
     return res.status(HttpStatus.OK).json(APIResponse.success(APIID.SEND_NOTIFICATION, result, 'OK'));
   }
 
-  @UseFilters(new AllExceptionsFilter(APIID.SEND_NOTIFICATION))
+  // @UseFilters(new AllExceptionsFilter(APIID.SEND_NOTIFICATION))
   @Patch('mark-read')
   @ApiBody({ type: MarkInAppReadDto })
   @ApiOkResponse({ description: 'Mark one or all as read' })
@@ -34,7 +34,7 @@ export class InAppController {
     return res.status(HttpStatus.OK).json(APIResponse.success(APIID.SEND_NOTIFICATION, result, 'OK'));
   }
 
-  @UseFilters(new AllExceptionsFilter(APIID.SEND_NOTIFICATION))
+  // @UseFilters(new AllExceptionsFilter(APIID.SEND_NOTIFICATION))
   @Post()
   @ApiOkResponse({ description: 'Create an in-app notification (supports single or send-structure bulk)' })
   @ApiInternalServerErrorResponse({ description: 'Server Error' })
